@@ -6,7 +6,7 @@
 
 Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
 
-Процент покрытия 100% (отчет: `htmlcov/index.html`)
+Процент покрытия 80% (отчет: `htmlcov/index.html`)
 
 ### Структура проекта
 
@@ -21,4 +21,4 @@
 
 **Запуск автотестов и создание HTML-отчета о покрытии**
 
->  `$ pytest --cov=tests --cov-report=html`
+>  `$ pytest --cov=praktikum --cov-report=html`
