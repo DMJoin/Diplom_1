@@ -1,27 +1,39 @@
 import pytest
 from praktikum.database import Database
-from praktikum.datasets import list_buns, list_ingredients
 
 
 class TestDatabase:
-   
-    @pytest.mark.parametrize('buns_from_list', [list_buns])
-    def test_available_buns_add_buns_returns_list_with_buns(self, buns_from_list):
+
+  
+    @pytest.mark.parametrize('index, expected_name', [(0, "black bun"),(1, "white bun"),(2, "red bun")])
+    def test_available_buns_return_correct_names(self, index, expected_name):
         database = Database()
         buns = database.available_buns()
-        for i in range(len(buns_from_list)):
-            correct_name, correct_price = buns_from_list[i]
-            assert buns[i].name == correct_name 
-            assert buns[i].price == correct_price
-         
+        assert buns[index].name == expected_name
 
-    @pytest.mark.parametrize('ingredients_from_list', [list_ingredients])
-    def test_available_ingredients_add_ingredients_returns_list_with_ingredients(self, ingredients_from_list):
+    @pytest.mark.parametrize('index, expected_price', [(0, 100),(1, 200),(2, 300)])
+    def test_available_buns_return_correct_price(self, index, expected_price):
+        database = Database()
+        buns = database.available_buns()
+        assert buns[index].price == expected_price
+
+    @pytest.mark.parametrize('index, expected_name', [(0, "hot sauce"), (1, "sour cream"), (2, "chili sauce"), (3, "cutlet"), (4, "dinosaur"), (5, "sausage")])
+    def test_available_ingredient_return_correct_names(self, index, expected_name):
         database = Database()
         ingredients = database.available_ingredients()
-        for i in range(len(ingredients_from_list)):
-            correct_name, correct_type, correct_price = ingredients_from_list[i]
-            assert ingredients[i].name == correct_name 
-            assert ingredients[i].get_type() == correct_type
-            assert ingredients[i].get_price() == correct_price
-            
+        assert ingredients[index].name == expected_name
+
+    @pytest.mark.parametrize('index, expected_type', [(0, "SAUCE"), (1, "SAUCE"), (2, "SAUCE"), (3, "FILLING"), (4, "FILLING"), (5, "FILLING")])
+    def test_available_ingredients_return_correct_types(self, index, expected_type):
+        database = Database()
+        ingredients = database.available_ingredients()
+        assert ingredients[index].get_type() == expected_type
+
+    @pytest.mark.parametrize('index, expected_price', [(0, 100), (1, 200), (2, 300), (3, 100), (4, 200), (5, 300)])
+    def test_available_ingredients_return_correct_prices(self, index, expected_price):
+        database = Database()
+        ingredients = database.available_ingredients()
+        assert ingredients[index].get_price() == expected_price
+
+
+ 

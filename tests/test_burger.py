@@ -31,6 +31,20 @@ class TestBurger:
         assert burger.ingredients[0] == ingredient_ketchup
         assert burger.ingredients[1] == ingredient_cutlet
 
+    def test_remove_ingredient_removes_correct_ingredient(self):
+        burger = Burger()
+        burger.add_ingredient(ingredient_cutlet)
+        burger.add_ingredient(ingredient_ketchup)
+        burger.remove_ingredient(0)
+        assert burger.ingredients[0] == ingredient_ketchup
+
+    def test_move_ingredient_changes_first_element(self):
+        burger = Burger()
+        burger.add_ingredient(ingredient_cutlet)
+        burger.add_ingredient(ingredient_ketchup)
+        burger.move_ingredient(0, 1)
+        assert burger.ingredients[0] == ingredient_ketchup
+
     def test_get_price_bun_and_ingredients_return_total_price(self):
         burger = Burger()
         burger.set_buns(classic_bun)
